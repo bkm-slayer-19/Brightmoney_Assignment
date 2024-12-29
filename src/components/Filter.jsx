@@ -6,11 +6,10 @@ const Filter = ({ value, onChange }) => {
       <label>Filter by Category: </label>
       <select value={value} onChange={(e) => onChange(e.target.value)}>
         <option value="all">All</option>
-        <option value="Food & Dining">Food & Dining</option>
         <option value="FoodNDining">FoodNDining</option>
+        <option value="Food & Dining">Food & Dining</option>
         <option value="utility">Utility</option>
         <option value="shopping">Shopping</option>
-        {/* Add more categories as needed */}
       </select>
     </div>
   );

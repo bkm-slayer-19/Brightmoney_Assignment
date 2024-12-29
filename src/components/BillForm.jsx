@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBill } from '../features/bills/billsSlice.js';
+import { addBill } from '../features/bills/billsSlice';
 
 const BillForm = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,6 @@ const BillForm = () => {
         date,
       })
     );
-    // reset form
     setDescription('');
     setCategory('FoodNDining');
     setAmount('');
@@ -44,15 +43,12 @@ const BillForm = () => {
         </div>
         <div>
           <label>Category: </label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="FoodNDining">FoodNDining</option>
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="FoodNDining">Food & Dining</option>
             <option value="utility">Utility</option>
             <option value="shopping">Shopping</option>
             <option value="Food & Dining">Food & Dining</option>
-            {/* add more categories if needed */}
+            {/* add more categories as needed */}
           </select>
         </div>
         <div>

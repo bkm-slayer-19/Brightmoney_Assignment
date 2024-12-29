@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import billsReducer from '../features/bills/billsSlice.js';
+import billsReducer from '../features/bills/billsSlice';
 
 export const store = configureStore({
   reducer: {

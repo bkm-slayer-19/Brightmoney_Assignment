@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// Sample initial data
 const initialState = {
   monthlyBudget: 50000,
   bills: [
@@ -32,10 +31,9 @@ const initialState = {
       amount: 10000,
       date: '2020-01-01',
     },
-    // ... add more if needed
   ],
-  filterCategory: 'all', // 'all' or specific category
-  highlightedBills: [],  // subset that meets budget condition
+  filterCategory: 'all',
+  highlightedBills: [],
 };
 
 const billsSlice = createSlice({
@@ -43,14 +41,14 @@ const billsSlice = createSlice({
   initialState,
   reducers: {
     addBill: (state, action) => {
-      // Assuming payload is {description, category, amount, date}
-      const newId = Date.now(); // quick unique ID
+      // payload: {description, category, amount, date}
+      const newId = Date.now();
       state.bills.push({ id: newId, ...action.payload });
     },
     editBill: (state, action) => {
-      // payload = { id, description, category, amount, date }
+      // payload: {id, description, category, amount, date}
       const { id, description, category, amount, date } = action.payload;
-      const existingBill = state.bills.find(bill => bill.id === id);
+      const existingBill = state.bills.find((b) => b.id === id);
       if (existingBill) {
         existingBill.description = description;
         existingBill.category = category;
@@ -61,13 +59,13 @@ const billsSlice = createSlice({
     removeBill: (state, action) => {
       // payload = id
       const idToRemove = action.payload;
-      state.bills = state.bills.filter(bill => bill.id !== idToRemove);
+      state.bills = state.bills.filter((b) => b.id !== idToRemove);
     },
     setFilterCategory: (state, action) => {
-      state.filterCategory = action.payload; // e.g. 'shopping' or 'utility' or 'all'
+      state.filterCategory = action.payload;
     },
     setHighlightedBills: (state, action) => {
-      // payload is an array of bill IDs that are highlighted
+      // payload = array of bill IDs
       state.highlightedBills = action.payload;
     },
     setMonthlyBudget: (state, action) => {

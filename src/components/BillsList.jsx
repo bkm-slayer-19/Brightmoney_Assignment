@@ -1,14 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeBill } from '../features/bills/billsSlice.js';
+import { removeBill } from '../features/bills/billsSlice';
 
 const BillsList = () => {
   const dispatch = useDispatch();
-  const { bills, filterCategory, highlightedBills } = useSelector(
-    (state) => state.bills
-  );
+  const { bills, filterCategory, highlightedBills } = useSelector((state) => state.bills);
 
-  // Filter the bills based on category
+  // Filter by category
   const filteredBills =
     filterCategory === 'all'
       ? bills
@@ -36,7 +34,9 @@ const BillsList = () => {
             return (
               <tr
                 key={bill.id}
-                style={{ backgroundColor: isHighlighted ? '#FFFFCC' : 'transparent' }}
+                style={{
+                  backgroundColor: isHighlighted ? '#ffffcc' : 'transparent',
+                }}
               >
                 <td>{bill.id}</td>
                 <td>{bill.description}</td>
@@ -45,9 +45,7 @@ const BillsList = () => {
                 <td>{bill.date}</td>
                 <td>{isHighlighted ? 'YES' : 'NO'}</td>
                 <td>
-                  <button onClick={() => dispatch(removeBill(bill.id))}>
-                    Remove
-                  </button>
+                  <button onClick={() => dispatch(removeBill(bill.id))}>Remove</button>
                 </td>
               </tr>
             );

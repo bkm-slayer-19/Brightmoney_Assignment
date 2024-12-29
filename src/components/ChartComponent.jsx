@@ -11,12 +11,10 @@ import {
 } from 'recharts';
 import dayjs from 'dayjs';
 
-// If dayjs isn't installed, you can install or just parse with vanilla JS.
-
 const ChartComponent = () => {
   const { bills } = useSelector((state) => state.bills);
 
-  // Group bills by date (or you could sort them by date)
+  // Group by date
   const dataMap = {};
   bills.forEach((bill) => {
     const dateKey = dayjs(bill.date).format('YYYY-MM-DD');
@@ -26,7 +24,7 @@ const ChartComponent = () => {
     dataMap[dateKey] += bill.amount;
   });
 
-  // Convert to chart-friendly array and sort by date
+  // Convert to array, sort by date
   const chartData = Object.keys(dataMap)
     .map((dateKey) => ({
       date: dateKey,

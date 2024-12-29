@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { findMinimalSubset } from './utils/subsetCalculator.js';
+import { findMinimalSubset } from './utils/subsetCalculator';
 import {
   setHighlightedBills,
   setFilterCategory,
   setMonthlyBudget,
-} from './features/bills/billsSlice.js';
-import BillsList from './components/BillsList.jsx';
-import BillForm from './components/BillForm.jsx';
-import Filter from './components/Filter.jsx';
-import ChartComponent from './components/ChartComponent.jsx';
+} from './features/bills/billsSlice';
+
+import BillsList from './components/BillsList';
+import BillForm from './components/BillForm';
+import Filter from './components/Filter';
+import ChartComponent from './components/ChartComponent';
 
 function App() {
   const dispatch = useDispatch();
-  const { bills, highlightedBills, monthlyBudget, filterCategory } = useSelector(
+  const { bills, monthlyBudget, highlightedBills, filterCategory } = useSelector(
     (state) => state.bills
   );
 
-  // Recompute the highlighted bills (the minimal subset)
-  // whenever bills or monthlyBudget changes
+  // Recompute minimal subset whenever bills or monthlyBudget changes
   useEffect(() => {
     if (bills.length > 0) {
-      const subsetIDs = findMinimalSubset(bills, monthlyBudget);
-      dispatch(setHighlightedBills(subsetIDs));
+      const subset = findMinimalSubset(bills, monthlyBudget);
+      dispatch(setHighlightedBills(subset));
     }
   }, [bills, monthlyBudget, dispatch]);
 
@@ -43,14 +43,14 @@ function App() {
         value={filterCategory}
         onChange={(cat) => dispatch(setFilterCategory(cat))}
       />
-      
+
       <BillsList />
 
       <BillForm />
 
       <ChartComponent />
 
-      {/* Example: highlight the chosen subset */}
+      {/* Display the minimal subset inline, or use a separate component */}
       <div style={{ marginTop: '20px' }}>
         <h2>Highlighted Bills (to be paid):</h2>
         <ul>
