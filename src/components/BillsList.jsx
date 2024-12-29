@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeBill } from '../features/bills/billsSlice';
+import { removeBill } from '../features/bills/billsSlice.js';
 
 const BillsList = () => {
   const dispatch = useDispatch();

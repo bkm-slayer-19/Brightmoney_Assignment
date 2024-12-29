@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { findMinimalSubset } from './utils/subsetCalculator';
+import { findMinimalSubset } from './utils/subsetCalculator.js';
 import {
   setHighlightedBills,
   setFilterCategory,
   setMonthlyBudget,
-} from './features/bills/billsSlice';
-import BillsList from './components/BillsList';
-import BillForm from './components/BillForm';
-import Filter from './components/Filter';
-import ChartComponent from './components/ChartComponent';
+} from './features/bills/billsSlice.js';
+import BillsList from './components/BillsList.jsx';
+import BillForm from './components/BillForm.jsx';
+import Filter from './components/Filter.jsx';
+import ChartComponent from './components/ChartComponent.jsx';
 
 function App() {
   const dispatch = useDispatch();

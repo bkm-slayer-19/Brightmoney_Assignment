@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBill } from '../features/bills/billsSlice';
+import { addBill } from '../features/bills/billsSlice.js';
 
 const BillForm = () => {
   const dispatch = useDispatch();
